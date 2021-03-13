@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service //Registra como um componente do Spring
 public class UserService {
 
     @Autowired

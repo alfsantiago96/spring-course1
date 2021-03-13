@@ -21,8 +21,8 @@ public class Order implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
+    @ManyToOne //Relacionamento entre objetos, para que o JPA transformar em chaves estrangeiras na DB
+    @JoinColumn(name = "client_id") // nome da chave estrangeira/coluna a ser adicionada no DB
     private User client;
 
     //Enums as OrderStatus == Integer, somente dentro da classe
