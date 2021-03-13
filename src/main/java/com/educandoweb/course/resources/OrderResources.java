@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/Orders")
+@RequestMapping(value = "/orders")
 public class OrderResources {
 
 	@Autowired
@@ -24,7 +24,7 @@ public class OrderResources {
 		return ResponseEntity.ok().body(list);
 	}
 
-	@GetMapping(value = "/orders")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<Order> findById(@PathVariable Long id) {
 		Order obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
