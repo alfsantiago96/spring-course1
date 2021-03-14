@@ -28,6 +28,9 @@ public class Product implements Serializable {
     private Set<Category> categories = new HashSet<>();
     //JoinTable = Informar o nome da tabela e quais serão as chaves extrangeiras que associarão as tabelas, em seguida, adicionar um mappedBy na coleção amarrada.
 
+    @OneToMany(mappedBy = "orderItemPK.product")
+    private Set<OrderItem> orderItems = new HashSet<>();
+
 
     public Product(){
 
@@ -85,6 +88,14 @@ public class Product implements Serializable {
         return categories;
     }
 
+    @JsonIgnore
+    public Set<Order> getOrders(){
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : orderItems){
+            set.add(x.getOrder());
+        }
+        return set;
+    }
 
     @Override
     public boolean equals(Object o) {
