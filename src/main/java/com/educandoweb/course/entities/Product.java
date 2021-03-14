@@ -26,7 +26,7 @@ public class Product implements Serializable {
     @ManyToMany
     @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
-
+    //JoinTable = Informar o nome da tabela e quais serão as chaves extrangeiras que associarão as tabelas, em seguida, adicionar um mappedBy na coleção amarrada.
 
 
     public Product(){

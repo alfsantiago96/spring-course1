@@ -1,13 +1,16 @@
 package com.educandoweb.course.entities;
 
 import com.educandoweb.course.entities.enums.OrderStatus;
+import com.educandoweb.course.entities.pk.OrderItemPK;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -27,6 +30,9 @@ public class Order implements Serializable {
 
     //Enums as OrderStatus == Integer, somente dentro da classe
     private Integer orderStatus;
+
+    @OneToMany(mappedBy = "orderItemPK.order")
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     public Order(){
 
@@ -70,6 +76,10 @@ public class Order implements Serializable {
     public void setOrderStatus(OrderStatus orderStatus) {
         if (orderStatus != null)
         this.orderStatus = orderStatus.getCode();
+    }
+
+    public Set<OrderItem> getOrderItems(){
+        return orderItems;
     }
 
     @Override
